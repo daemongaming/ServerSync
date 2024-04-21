@@ -1,0 +1,24 @@
+# ------------------------------------------------------
+# SERVERSYNC Configuration File (config.yml)
+# 
+# Editing the settings in this file will change the way
+# plugin works on your server. To reset this file to
+# its default values, simply delete your config.yml and
+# stop/restart your server.
+# ------------------------------------------------------
+#
+# LOADED MARKER | Dummy value to check against at start-up, don't change!
+loaded: true
+# 
+# LANGUAGE | Currently supported languages: English
+language: English
+# 
+# SILENT MODE | If true, most messages will not be relayed to players.
+silent_mode: false
+#
+# DEBUG MODE | If true, server admins can see debug messages in the console.
+debug_mode: false
+#
+# SERVER_NAME | The Bungee server name for the server this plugin is installed on.
+server_name: lobby
+#
