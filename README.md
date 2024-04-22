@@ -31,7 +31,7 @@ So I built a separate plugin called *ServerSync* to handle player data synchroni
 
 If it does not work, ensure that the database has a table labeled "playerData" formatted with columns like inventory, etc. If not, use this SQL query to create the table and restart the servers:
 
-``"CREATE TABLE playerData (player varchar(255), server varchar(255), health double, air int, hunger int, effects text, inventory text, armor text, enderInventory text, xp float, mode varchar(255))``
+``CREATE TABLE playerData (player varchar(255), server varchar(255), health double, air int, hunger int, effects text, inventory text, armor text, enderInventory text, xp float, mode varchar(255))``
 
 ## Credits
 
