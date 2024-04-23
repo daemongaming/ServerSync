@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,6 +20,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitScheduler;
 
 public class SyncListener implements Listener {
 	
@@ -98,7 +100,6 @@ public class SyncListener implements Listener {
 				armorStr = rs.getString(6);
 				enderInvStr = rs.getString(7);
 				xp = (float) rs.getFloat(8);
-				if (plugin.options.get("debug_mode")) plugin.getLogger().info("Player xp retrieved from database: " + xp);
 				String mode = rs.getString(9);
 				gameMode = GameMode.valueOf(mode);
 				
@@ -205,7 +206,6 @@ public class SyncListener implements Listener {
 	public void setPlayerData(Player player, Double health, int air, int hunger, Collection<PotionEffect> effects, String invStr, String armorStr, String enderInvStr, float xp, GameMode gameMode) {
 		
 		//Set player stats
-		player.setGameMode(gameMode);
 		player.setHealth(health);
 		player.setRemainingAir(air);
 		player.setFoodLevel(hunger);
@@ -224,6 +224,15 @@ public class SyncListener implements Listener {
 		
 		//Set player inventory
 		setPlayerInv(player, invStr, armorStr, enderInvStr);
+		
+		//Set the player's game mode
+		BukkitScheduler scheduler = Bukkit.getServer().getScheduler();
+		scheduler.scheduleSyncDelayedTask(plugin, new Runnable() {
+			@Override
+			public void run() {
+				player.setGameMode(gameMode);
+			}
+        }, 20);
 		
 	}
 	
